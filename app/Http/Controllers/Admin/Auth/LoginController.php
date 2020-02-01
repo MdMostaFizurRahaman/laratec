@@ -3,18 +3,21 @@
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('guest:admin', ['except' => ['logout']]);
     }
 
 
-     /**
+    /**
      * Show the login form.
      *
      * @return \Illuminate\Http\Response
@@ -34,11 +37,11 @@ class LoginController extends Controller
     {
         $this->validator($request);
 
-        if(Auth::guard('admin')->attempt($request->only('email','password'),$request->filled('remember'))){
+        if (Auth::guard('admin')->attempt($request->only('email', 'password'), $request->filled('remember'))) {
             //Authentication passed...
             return redirect()
                 ->intended(route('admin.home'))
-                ->with('status','You are Logged in as Admin!');
+                ->with('status', 'You are Logged in as Admin!');
         }
 
         //Authentication failed...
@@ -55,7 +58,7 @@ class LoginController extends Controller
         Auth::guard('admin')->logout();
         return redirect()
             ->route('admin.login')
-            ->with('status','Admin has been logged out!');
+            ->with('status', 'Admin has been logged out!');
     }
 
     /**
@@ -78,7 +81,7 @@ class LoginController extends Controller
         ];
 
         //validate the request.
-        $request->validate($rules,$messages);
+        $request->validate($rules, $messages);
     }
 
     /**
@@ -89,8 +92,8 @@ class LoginController extends Controller
     private function loginFailed()
     {
         return redirect()
-        ->back()
-        ->withInput()
-        ->with('error','Login failed, please try again!');
+            ->back()
+            ->withInput()
+            ->with('error', 'Login failed, please try again!');
     }
 }
