@@ -7,7 +7,7 @@
 	<meta name="keywords" content="FB-Tech,7uptheme" />
 	<meta name="robots" content="noodp,index,follow" />
 	<meta name='revisit-after' content='1 days' />
-	<title>{{config('app.name', 'Laravel')}} | Home 01</title>
+	<title>{{config('app.name', 'Laravel')}} | @yield('title')</title>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="{{asset('theme')}}/css/libs/ionicons.min.css"/>
 	<link rel="stylesheet" type="text/css" href="{{asset('theme')}}/css/libs/bootstrap.min.css"/>

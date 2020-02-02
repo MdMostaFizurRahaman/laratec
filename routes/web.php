@@ -40,6 +40,9 @@ Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function () {
 
     Route::resource('categories', 'CategoryController');
     Route::resource('products', 'ProductController');
+
+    Route::get('/company', 'SettingsController@showCompanyDetailsForm')->name('company.details');
+    Route::post('/company', 'SettingsController@storeCompanyDetails')->name('company.details.store');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
