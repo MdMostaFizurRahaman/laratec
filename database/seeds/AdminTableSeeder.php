@@ -17,5 +17,11 @@ class AdminTableSeeder extends Seeder
             'email' => 'asgraphicsolution@gmail.com',
             'password' => bcrypt('mama@1234'),
         ]);
+
+        Admin::create([
+            'name' => 'Admin',
+            'email' => 'admin@example.com',
+            'password' => bcrypt('123456'),
+        ]);
     }
 }
