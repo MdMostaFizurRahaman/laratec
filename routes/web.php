@@ -15,11 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
 Auth::routes(['register' => false]);
 
 
 Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function () {
-
+    Route::get('/test', function () {
+        return view('admin.pages.settings.test');
+    });
     Route::get('/', 'HomeController@index')->name('home');
 
     Route::namespace('Auth')->group(function () {
@@ -43,6 +47,11 @@ Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function () {
 
     Route::get('/company', 'SettingsController@showCompanyDetailsForm')->name('company.details');
     Route::post('/company', 'SettingsController@storeCompanyDetails')->name('company.details.store');
+
+    // Carousel Routes
+    Route::get('/carousels', 'CarouselController@carousels')->name('carousels');
+    Route::post('/carousel', 'CarouselController@store')->name('carousel.store');
+    Route::post('/carousel/update', 'CarouselController@update')->name('carousel.update');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

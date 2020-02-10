@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-class Settings extends Model implements HasMedia
+class Carousel extends Model implements HasMedia
 {
     use HasMediaTrait;
 
-    protected $table = "settings";
+    protected $table = "carousels";
     protected $guarded = [];
 
     public function registerMediaCollection()

@@ -24,7 +24,9 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('theme')}}/css/theme.css" media="all"/>
 	<link rel="stylesheet" type="text/css" href="{{asset('theme')}}/css/responsive.css" media="all"/>
 	<link rel="stylesheet" type="text/css" href="{{asset('theme')}}/css/browser.css" media="all"/>
-	<!-- <link rel="stylesheet" type="text/css" href="{{asset('theme')}}/css/rtl.css" media="all"/> -->
+    <!-- <link rel="stylesheet" type="text/css" href="{{asset('theme')}}/css/rtl.css" media="all"/> -->
+    @stack('styles')
+
 </head>
 <body class="preload">
 <div class="wrap">
@@ -49,5 +51,7 @@
 <script src="{{asset('theme')}}/js/libs/timecircles.min.js"></script>
 <script src="{{asset('theme')}}/js/libs/wow.min.js"></script>
 <script src="{{asset('theme')}}/js/theme.js"></script>
+@stack('scripts')
+
 </body>
 </html>

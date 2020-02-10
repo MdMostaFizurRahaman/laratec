@@ -1,9 +1,12 @@
+@php
+    $company = App\Models\Settings::first();
+@endphp
 <header id="header">
     <div class="top-header bg-color2">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-xs-12">
-                    <p class="desc white hot-line"><span class="smoke">Call Hotline:</span> 01678 311 160</p>
+                    <p class="desc white hot-line"><span class="smoke">Call Hotline:</span> {{$company->hotline}}</p>
                 </div>
                 <div class="col-sm-6 col-xs-12">
                     <ul class="search-cart-top list-inline-block pull-right">
@@ -87,7 +90,7 @@
                 <div class="col-md-3 col-sm-12 col-xs-9">
                     <div class="logo logo1">
                         <h1 class="hidden">FB-Tech</h1>
-                        <a href="#"><img src="{{asset('theme')}}/images/home/home1/logo.png" alt=""></a>
+                        <a href="#"><img src="{{$company->getFirstMediaUrl('logo')}}" width='100' height="60" style="border-radius: 5px;" alt=""></a>
                     </div>
                 </div>
                 <div class="col-md-9 col-sm-12 col-xs-3">

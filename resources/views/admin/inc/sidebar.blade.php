@@ -11,7 +11,7 @@
     <div class="sidebar">
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-       
+
         <ul class="nav nav-pills nav-sidebar flex-column nav-legacy nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
@@ -78,7 +78,7 @@
                   </a>
                 </li>
               </ul>
-            </li> 
+            </li>
             {{-- End Pages Section --}}
 
             {{-- Blog Section --}}
@@ -104,7 +104,7 @@
                   </a>
                 </li>
               </ul>
-            </li> 
+            </li>
             {{-- Eng Blog Section --}}
 
             {{-- Settings Section --}}
@@ -132,13 +132,13 @@
               </ul>
             </li>
             {{-- Settings Section --}}
-            
+
             {{-- Slider Section --}}
             <li class="nav-item">
-              <a href="{{route('admin.categories.index')}}" class="nav-link {{Request::is('admin/Slider') || Request::is('admin/carasouls/*') ? 'active' : ''}}">
+              <a href="{{route('admin.carousels')}}" class="nav-link {{Request::is('admin/carousels') || Request::is('admin/carousels/*') ? 'active' : ''}}">
                 <i class="nav-icon fas fa-images"></i>
                 <p>
-                  Sliders
+                  Carousel
                 </p>
               </a>
             </li>

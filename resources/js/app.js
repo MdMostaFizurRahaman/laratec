@@ -8,6 +8,36 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+window.axios = require('axios');
+
+import { Form, HasError, AlertError,  AlertErrors,  AlertSuccess } from 'vform';
+
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+
+window.Form = Form;
+Vue.component(HasError.name, HasError)
+Vue.component(AlertError.name, AlertError)
+Vue.component(AlertErrors.name, AlertErrors)
+Vue.component(AlertSuccess.name, AlertSuccess)
+
+
+// import plugin
+import Swal from 'sweetalert2'
+import VueToastr from "vue-toastr";
+
+// use Swal
+window.Swal = Swal;
+
+
+// use VueToastr
+Vue.use(VueToastr, {
+  defaultTimeout: 3000,
+  defaultProgressBar: true,
+});
+
+Vue.config.productionTip = false;
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -27,6 +57,6 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app',
-});
+// const app = new Vue({
+//     el: '#app',
+// });
