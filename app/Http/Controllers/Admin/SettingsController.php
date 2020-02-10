@@ -56,7 +56,7 @@ class SettingsController extends Controller
             'mobile' => 'required',
             'hotline' => 'required',
             'address' => 'required|max:100',
-            'logo' => 'required|image|mimes:jpeg,jpg,png,gif|max:2048',
+            'logo' => 'image|mimes:jpeg,jpg,png,gif|max:2048',
         ]);
 
         $companyDetails = Settings::find($request->id)->first();

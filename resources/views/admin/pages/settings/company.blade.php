@@ -236,6 +236,7 @@
                 loader: true,
                 loaderBg: '#9EC600',  // To change the background
                 position: 'bottom-right',
+                hideAfter : 2000,
                 showHideTransition: 'slide',
                 // transition : 'slide',
             })

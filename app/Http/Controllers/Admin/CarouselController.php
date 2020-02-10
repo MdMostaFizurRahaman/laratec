@@ -44,7 +44,7 @@ class CarouselController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|unique:carousels',
             'subtitle' => 'required',
-            'link' => 'required',
+            'link' => 'required|url',
             'slider' => 'required|image|mimes:jpeg,jpg,png,gif|max:2048',
         ]);
 
@@ -96,7 +96,7 @@ class CarouselController extends Controller
             'title' => 'required|unique:carousels,id,'.$request->id,
             'subtitle' => 'required',
             'link' => 'required',
-            'slider' => 'required|image|mimes:jpeg,jpg,png,gif|max:2048',
+            'slider' => 'image|mimes:jpeg,jpg,png,gif|max:2048',
         ]);
 
         $carousel = Carousel::find($request->id)->first();
@@ -104,13 +104,13 @@ class CarouselController extends Controller
                                         'title' => $request->title,
                                         'subtitle' => $request->subtitle,
                                         'link' => $request->link,
-                                        'slider' => $request->slider->getClientOriginalName(),
+                                        'slider' => $request->slider ? $request->slider->getClientOriginalName() : $carousel->slider,
                                     ]);
         if($request->has('slider') && $updateCarousel)
         {
             $addMedia = $carousel->addMediaFromRequest('slider')->withResponsiveImages()->toMediaCollection('carousels');
         }
-        return response(['status' => 'success', 'message' => 'Carousel added successfully.']);
+        return response(['status' => 'success', 'message' => 'Carousel updated successfully.']);
     }
 
     /**

@@ -96,6 +96,7 @@
                                         <div class="alert alert-danger alert-solid" style="display:none"></div>
                                             {!! Form::model($carousel, ['id' => '{{"carousel-".$carousel->id}}', 'route' => 'admin.carousel.update', 'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
                                             <div class="row">
+                                                {!! Form::hidden('id', null, ['class' => 'form-control']) !!}
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         {!! Form::label('title', 'Title') !!}
@@ -195,26 +196,11 @@
                 cache:false,
                 contentType: false,
                 processData: false,
-                success: function(data){
-                    if(data.success){
-                        $.toast({
-                                heading: 'Success',
-                                text: data.success,
-                                showHideTransition: 'fade',
-                                position: 'bottom-right',
-                                icon: 'success',
-                            })
-                    }
-                    if(data.errors){
-                        $.each(data.errors, function(key, value){
-                            $.toast({
-                                heading: 'Error',
-                                text: value,
-                                showHideTransition: 'fade',
-                                position: 'bottom-right',
-                                icon: 'error',
-                            })
-                        });
+                success: function(response){
+                    if(response.status){
+                        responseToast(response)
+                    } else {
+                        responseToast(response)
                     }
                 }
             });
