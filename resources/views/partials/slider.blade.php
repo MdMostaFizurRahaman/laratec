@@ -3,12 +3,11 @@
 $carousels = App\Models\Carousel::all();
 @endphp
 <div class="banner-slider bg-slider banner-slider1">
-    <div class="wrap-item" data-navigation="true" data-transition="fade" data-autoplay="true" data-itemscustom="[[0,1]]">
-        {{-- Carousel items --}}
-        @if (!empty($carousels))
+    {{-- Carousel items --}}
+    @if($carousels->count())
+    @foreach ($carousels as $carousel)
 
-        @foreach ($carousels as $carousel)
-
+    <div class="wrap-item" data-navigation="true" data-transition="fade" data-autoplay="true">
         <div class="item-slider item-slider1">
             <div class="banner-thumb">
                 <a href="{{$carousel->getFirstMediaUrl('carousels')}}">
@@ -26,12 +25,16 @@ $carousels = App\Models\Carousel::all();
                 </div>
             </div>
         </div>
-        @endforeach
-        @else
+    </div>
+
+    @endforeach
+    @else
+
+    <div class="wrap-item" data-navigation="true" data-transition="fade" data-autoplay="true">
         <div class="item-slider item-slider1">
             <div class="banner-thumb">
-                <a href="{{asset('theme')}}/images/brand/homepage_brand1.png">
-                    <img src="{{asset('theme')}}/images/brand/homepage_brand1.png" class="img-fluid" alt="">
+                <a href="{{asset('theme')}}/images/shop/slide1.jpg">
+                    <img src="{{asset('theme')}}/images/shop/slide1.jpg" alt="">
                 </a>
             </div>
             <div class="banner-info animated" data-animated="fadeInLeft">
@@ -44,9 +47,9 @@ $carousels = App\Models\Carousel::all();
                 </div>
             </div>
         </div>
-        @endif
-        {{-- End Carousel items --}}
-
     </div>
+    @endif
+    {{-- End Carousel items --}}
+
 </div>
 <!-- End Banner Slider -->

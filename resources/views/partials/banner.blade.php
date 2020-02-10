@@ -27,7 +27,9 @@
                 </div>
                 <div class="item-product text-center style1">
                     <div class="product-thumb">
-                        <a href="#" class="product-thumb-link zoom-thumb"><img src="{{asset('theme')}}/images/product/fb-tech-smartphone-04.png" alt="" /></a>
+                        <a href="#" class="product-thumb-link zoom-thumb">
+                            <img src="{{asset('theme')}}/images/product/fb-tech-smartphone-04.png" alt="" />
+                        </a>
                         <a href="quick-view.html" class="quickview-link fancybox fancybox.iframe">Quick view</a>
                         <div class="product-label">
                             <span class="sale-label">Sale</span>

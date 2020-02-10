@@ -47,7 +47,7 @@ class SettingsController extends Controller
         return response(['status' => 'success', 'message' => 'Company details added successfully.']);
     }
 
-    public function updateCompanyDetails(Request $request)
+    public function updateCompanyDetails(Request $request, Settings $companyDetails)
     {
         $validatedData = $request->validate([
             'company_name' => 'required|unique:settings,id,'.$request->id,
@@ -59,7 +59,6 @@ class SettingsController extends Controller
             'logo' => 'image|mimes:jpeg,jpg,png,gif|max:2048',
         ]);
 
-        $companyDetails = Settings::find($request->id)->first();
         $updateCompanyDetails = $companyDetails->update([
                                             'company_name' => $request->company_name,
                                             'email' => $request->email,
@@ -67,7 +66,7 @@ class SettingsController extends Controller
                                             'mobile' => $request->mobile,
                                             'hotline' => $request->hotline,
                                             'address' => $request->address,
-                                            'logo' => $request->logo->getClientOriginalName(),
+                                            'logo' => $request->slider ? $request->logo->getClientOriginalName() : $companyDetails->logo,
                                         ]);
         if($request->has('logo') && $updateCompanyDetails)
         {

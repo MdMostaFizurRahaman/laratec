@@ -6,7 +6,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-xs-12">
-                    <p class="desc white hot-line"><span class="smoke">Call Hotline:</span> {{$company->hotline}}</p>
+                    <p class="desc white hot-line"><span class="smoke">Call Hotline:</span>
+                        @if(!empty($company))
+                        {{$company->hotline}}
+                        @else
+                        {{'01711-085864'}}
+                        @endif
+                    </p>
                 </div>
                 <div class="col-sm-6 col-xs-12">
                     <ul class="search-cart-top list-inline-block pull-right">

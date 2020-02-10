@@ -6,30 +6,7 @@
 
 @push('styles')
 
-    <link rel="stylesheet" href="{{asset('admin')}}/dist/css/dropzone.css">
-
-    <style>
-        .dropzone {
-            padding: 0;
-        }
-
-        .dropzone .dz-preview .dz-image {
-            width: 100%;
-            height: 100%;
-            border-radius: 5px;
-        }
-
-        .dropzone .dz-preview .dz-image img{
-            width: 440px;
-            height: 220px;
-        }
-        .dropzone .dz-preview .dz-progress .dz-upload { background: green; }
-        .dropzone .dz-preview .dz-remove {
-            position: absolute;
-            left: 45%;
-            bottom: -18px;
-        }
-    </style>
+    <link href="{{asset('admin')}}/dist/css/dropify.css" rel="stylesheet" >
 
 @endpush
 
@@ -46,11 +23,12 @@
                     @if(!empty($company))
                     {!! Form::model($company, ['id' => 'company_form', 'route' => 'admin.company.details.update', 'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
                     @else
-                    {!! Form::model($company, ['id' => 'company_form', 'route' => 'admin.company.details.store', 'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
+                    {!! Form::model($company, ['id' => 'company_update_form', 'route' => 'admin.company.details.store', 'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
                     @endif
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
+                                    {{-- @csrf --}}
                                     {!! Form::label('company_name', 'Company Name') !!}
                                     {!! Form::text('company_name', null, ['class' => 'form-control']) !!}
                                 </div>
@@ -109,40 +87,18 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6" style="margin: 0 auto;">
+                            <div class="col-sm-6" style="margin: auto">
                                 <div class="form-group">
-                                    <div id="myDropzone" class="dropzone text-center @error('logo') is-invalid @enderror">
-                                        <div class="dz-message dz-default needsclick">
-                                            <h3 class="sbold">Drop files here to upload</h3>
-                                            <i class="far fa-images fa-4x" aria-hidden="true"></i>
-
-                                            <div>You can also click to open file browser</div>
-                                        </div>
-                                    </div>
+                                    <label for="">Logo Image</label>
+                                    <input class="form-control dropify"  data-allowed-file-extensions="png jpg" type="file" name="logo" data-default-file="@if(!empty($company)){{asset('public').$company->getFirstMediaUrl('logo')}}@endif">
+                                    <label class="text-danger">* Image height should be 200x42 px. </label>
                                 </div>
-                                @error('logo')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
                             </div>
                         </div>
-                        {{-- <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    {!! Form::label('logo', 'Logo') !!}
-                                    {!! Form::file('logo', null, ['class' => 'form-control']) !!}
-                                </div>
-                                @error('logo')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <img id="selectedImage" class="" style="margin-bottom: 10px;" src="" alt="">
-                            </div>
-                        </div> --}}
                         <div class="row">
                             <div class="col-lg-12 text-right">
                                 <div class="form-group">
-                                    {!! Form::submit('Submit', ['class' => 'form-control btn btn-info']) !!}
+                                    {!! Form::submit('Submit', ['class' => 'form-control btn btn-primary']) !!}
                                 </div>
                             </div>
                         </div>
@@ -158,7 +114,7 @@
 
 @push('scripts')
 
-    <script src="{{asset('admin')}}/dist/js/dropzone.js"></script>
+    <script src="{{asset('admin')}}/dist/js/dropify.js"></script>
 
     <script>
         // $('#logo').change(function readURL()
@@ -178,54 +134,33 @@
         // });
 
 
-        // Dropzone
-        Dropzone.autoDiscover = false;
-        var url = $('#company_form').attr('action');
+        // Dropify
+        $('.dropify').dropify();
+          //Override form submit
+        $("form").on("submit", function (event) {
+            event.preventDefault();
 
-        $('#myDropzone').dropzone({
-            url: url,
-            paramName: 'logo',
-            autoProcessQueue: false,
-            uploadMultiple: false,
-            maxFiles: 1,
-            maxFilesize: 2,
-            acceptedFiles: 'image/jpeg,image/png,image/gif',
-            addRemoveLinks: true,
-            thumbnailWidth: 300,
-            thumbnailHeight: 200,
-            init: function() {
-                myDropzone = this;
-                @if(empty($company))
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
 
-                    var oldLogo = {name: {{$company->getFirstMedia('logo')->name}}, size: {{$company->getFirstMedia('logo')->size}} };
-                    myDropzone.options.addedfile.call(myDropzone, oldLogo);
-                    myDropzone.options.thumbnail.call(myDropzone, oldLogo, "{{asset('public').$company->getFirstMediaUrl('logo')}}");
-                    myDropzone.emit("complete", oldLogo);
-                        // myDropzone.on("sending", function(data, xhr, formData) {
-                        //     $("form").find("input").each(function(){
-                        //         var dataName = $(this).attr("name");
-                        //         var dataValue = $(this).val();
-                        //         formData.append(dataName, dataValue);
-                        //     });
-                        // });
-                @endif
-                myDropzone.on('success', function (file, response) {
-                    var imgName = response;
-                    file.previewElement.classList.add("dz-success");
-                    responseToast(response)
-                });
-
-                myDropzone.on('error', function (file, response) {
-                    file.previewElement.classList.add("dz-error");
-                    responseToast(response)
-                });
-            },
-        });
-
-        $("#company_form").submit(function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            myDropzone.processQueue();
+            $.ajax({
+                url: $(this).attr('action'), // Get the action URL to send AJAX to
+                type: "post",
+                data: new FormData(this), // get all form variables
+                cache:false,
+                contentType: false,
+                processData: false,
+                success: function(response){
+                    if(response.status){
+                        responseToast(response)
+                    } else {
+                        responseToast(response)
+                    }
+                }
+            });
         });
 
         function responseToast(response){

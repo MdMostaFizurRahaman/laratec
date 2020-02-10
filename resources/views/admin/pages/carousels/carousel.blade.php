@@ -8,9 +8,6 @@
 
     <link href="{{asset('admin')}}/dist/css/dropify.css" rel="stylesheet" >
 
-    <style>
-
-    </style>
 @endpush
 
 @section('content')
@@ -25,7 +22,7 @@
                     <div class="card-body">
                         <div id="accordion" class="accordion-one" role="tablist" aria-multiselectable="true">
                             <div class="card">
-                                <div class="card-header bg-gray" role="tab" id="headingOne">
+                                <div class="card-header bg-light" role="tab" id="headingOne">
                                     <a data-toggle="collapse" data-parent="#accordion" href="#addCarousel" aria-expanded="false" aria-controls="addCarousel" class="tx-gray-800 transition collapsed">
                                         <small><span class="fa fa-plus"></span></small> Add Carousel
                                     </a>
@@ -86,7 +83,7 @@
                                 @if (!empty($carousels))
                                 @foreach ($carousels as $carousel)
 
-                                <div class="card-header bg-gray" role="tab" id="{{'heading'.$carousel->id}}">
+                                <div class="card-header bg-light" role="tab" id="{{'heading'.$carousel->id}}">
                                     <a data-toggle="collapse" data-parent="#accordion" href="#{{'carousel'.$carousel->id}}" aria-expanded="false" aria-controls="{{'carousel'.$carousel->id}}" class="tx-gray-800 transition collapsed">
                                         <small><span class="fas fa-image"></span></small> {{'Carousel ' . $carousel->id}}
                                     </a>
@@ -131,7 +128,7 @@
                                             <div class="row">
                                                 <div class="col-lg-12 text-right">
                                                     <div class="form-group">
-                                                        {!! Form::submit('Submit', ['class' => 'form-control btn btn-info']) !!}
+                                                        {!! Form::submit('Submit', ['class' => 'form-control btn btn-primary']) !!}
                                                     </div>
                                                 </div>
                                             </div>
@@ -158,25 +155,8 @@
     <script src="{{asset('admin')}}/dist/js/dropify.js"></script>
 
     <script>
-        // $('#logo').change(function readURL()
-        // {
-        //     if (this.files && this.files[0]) {
-        //     var reader = new FileReader();
-
-        //     reader.onload = function (e) {
-        //         $('#selectedImage')
-        //         .attr('src', e.target.result)
-        //         .width(120)
-        //         .height(80);
-        //     };
-
-        //     reader.readAsDataURL(this.files[0]);
-        //     }
-        // });
-
 
         // Dropify
-        // $(function(){
         $('.dropify').dropify();
           //Override form submit
         $("form").on("submit", function (event) {
@@ -205,7 +185,6 @@
             });
         });
 
-    // })
 
         function responseToast(response){
             $.toast({
