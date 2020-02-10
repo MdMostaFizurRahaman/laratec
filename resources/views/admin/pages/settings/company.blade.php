@@ -43,10 +43,10 @@
             <div class="col-lg-12">
                 <div class="card card-primary card-outline" id="company_deails">
                     <div class="card-body">
-                    @if(!$company->count)
-                    {!! Form::model($company, ['id' => 'company_form', 'route' => 'admin.company.details.store', 'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
-                    @else
+                    @if(!empty($company))
                     {!! Form::model($company, ['id' => 'company_form', 'route' => 'admin.company.details.update', 'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
+                    @else
+                    {!! Form::model($company, ['id' => 'company_form', 'route' => 'admin.company.details.store', 'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
                     @endif
                         <div class="row">
                             <div class="col-lg-6">
@@ -195,7 +195,7 @@
             thumbnailHeight: 200,
             init: function() {
                 myDropzone = this;
-                @if($company)
+                @if(empty($company))
 
                     var oldLogo = {name: {{$company->getFirstMedia('logo')->name}}, size: {{$company->getFirstMedia('logo')->size}} };
                     myDropzone.options.addedfile.call(myDropzone, oldLogo);

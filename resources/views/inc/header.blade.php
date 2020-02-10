@@ -90,7 +90,11 @@
                 <div class="col-md-3 col-sm-12 col-xs-9">
                     <div class="logo logo1">
                         <h1 class="hidden">FB-Tech</h1>
-                        <a href="#"><img src="{{$company->getFirstMediaUrl('logo')}}" width='100' height="60" style="border-radius: 5px;" alt=""></a>
+                        @if (!empty($company))
+                            <a href="#"><img src="{{asset('public').$company->getFirstMediaUrl('logo')}}" width='100' height="60" style="border-radius: 5px;" alt=""></a>
+                        @else
+                            <a href="#"><img src="{{asset('theme')}}/images/brand/homepage_brand1.png" width='100' height="60" style="border-radius: 5px;" alt=""></a>
+                        @endif
                     </div>
                 </div>
                 <div class="col-md-9 col-sm-12 col-xs-3">

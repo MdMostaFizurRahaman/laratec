@@ -83,7 +83,7 @@
                                 {{-- Add Carousel --}}
 
                                 {{-- Carousels --}}
-                                @if ($carousels)
+                                @if (!empty($carousels))
                                 @foreach ($carousels as $carousel)
 
                                 <div class="card-header bg-gray" role="tab" id="{{'heading'.$carousel->id}}">
@@ -142,7 +142,6 @@
                                 @endforeach
                                 @endif
                                 {{-- Carousels --}}
-
                             </div>
                         </div>
                     </div>
