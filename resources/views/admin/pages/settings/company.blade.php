@@ -27,71 +27,76 @@
                     @endif
                         <div class="row">
                             <div class="col-lg-6">
-                                <div class="form-group">
+                                <div class="form-group @error('company_name'){{'is-invalid'}}@enderror">
                                     {{-- @csrf --}}
+                                    {!! Form::hidden('id', null, ['class' => 'form-control']) !!}
+
                                     {!! Form::label('company_name', 'Company Name') !!}
                                     {!! Form::text('company_name', null, ['class' => 'form-control']) !!}
+                                    @error('company_name')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                                @error('company_name')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
                             </div>
                             <div class="col-lg-6">
-                                <div class="form-group">
+                                <div class="form-group @error('telephone'){{'is-invalid'}}@enderror">
                                     {!! Form::label('telephone', 'Phone') !!}
                                     {!! Form::text('telephone', null, ['class' => 'form-control']) !!}
+                                    @error('telephone')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                                @error('telephone')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-6">
-                                <div class="form-group">
+                                <div class="form-group @error('mobile'){{'is-invalid'}}@enderror">
                                     {!! Form::label('mobile', 'Mobile') !!}
                                     {!! Form::text('mobile', null, ['class' => 'form-control']) !!}
+                                    @error('mobile')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                                @error('mobile')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
                             </div>
                             <div class="col-lg-6">
-                                <div class="form-group">
+                                <div class="form-group @error('hotline'){{'is-invalid'}}@enderror">
                                     {!! Form::label('hotline', 'Hotline') !!}
                                     {!! Form::text('hotline', null, ['class' => 'form-control']) !!}
+                                    @error('hotline')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                                @error('title')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-6">
-                                <div class="form-group">
+                                <div class="form-group @error('address'){{'is-invalid'}}@enderror">
                                     {!! Form::label('address', 'Address') !!}
                                     {!! Form::text('address', null, ['class' => 'form-control']) !!}
+                                    @error('address')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                                @error('address')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
                             </div>
                             <div class="col-lg-6">
-                                <div class="form-group">
+                                <div class="form-group @error('email'){{'is-invalid'}}@enderror">
                                     {!! Form::label('email', 'Email') !!}
                                     {!! Form::email('email', null, ['class' => 'form-control']) !!}
+                                    @error('email')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                                @error('email')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6" style="margin: auto">
-                                <div class="form-group">
+                                <div class="form-group @error('logo'){{'is-invalid'}}@enderror">
                                     <label for="">Logo Image</label>
                                     <input class="form-control dropify"  data-allowed-file-extensions="png jpg" type="file" name="logo" data-default-file="@if(!empty($company)){{asset('public').$company->getFirstMediaUrl('logo')}}@endif">
-                                    <label class="text-danger">* Image height should be 200x42 px. </label>
+                                    <small class="text-info">* Image height should be 200x42 px. </small>
+                                    @error('logo')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -137,31 +142,34 @@
         // Dropify
         $('.dropify').dropify();
           //Override form submit
-        $("form").on("submit", function (event) {
-            event.preventDefault();
+        function dropify(){
 
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
+            $("form").on("submit", function (event) {
+                event.preventDefault();
 
-            $.ajax({
-                url: $(this).attr('action'), // Get the action URL to send AJAX to
-                type: "post",
-                data: new FormData(this), // get all form variables
-                cache:false,
-                contentType: false,
-                processData: false,
-                success: function(response){
-                    if(response.status){
-                        responseToast(response)
-                    } else {
-                        responseToast(response)
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
-                }
+                });
+
+                $.ajax({
+                    url: $(this).attr('action'), // Get the action URL to send AJAX to
+                    type: "post",
+                    data: new FormData(this), // get all form variables
+                    cache:false,
+                    contentType: false,
+                    processData: false,
+                    success: function(response){
+                        if(response.status){
+                            responseToast(response)
+                        } else {
+                            responseToast(response)
+                        }
+                    }
+                });
             });
-        });
+        }
 
         function responseToast(response){
             $.toast({

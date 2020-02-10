@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Alert;
 use App\Models\Settings;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CompanySettingRequest;
 
 class SettingsController extends Controller
 {
@@ -19,59 +21,49 @@ class SettingsController extends Controller
         return view('admin.pages.settings.company')->with(compact('company'));
     }
 
-    public function storeCompanyDetails(Request $request)
+    public function storeCompanyDetails(CompanySettingRequest $request)
     {
-        $validatedData = $request->validate([
-            'company_name' => 'required|unique:settings',
-            'email' => 'required|email',
-            'telephone' => 'required',
-            'mobile' => 'required',
-            'hotline' => 'required',
-            'address' => 'required|max:100',
-            'logo' => 'required|image|mimes:jpeg,jpg,png,gif|max:2048',
-        ]);
-
         $companyDetails = Settings::firstOrCreate(['company_name' => $request->company_name],
-                                        [
-                                            'email' => $request->email,
-                                            'telephone' => $request->telephone,
-                                            'mobile' => $request->mobile,
-                                            'hotline' => $request->hotline,
-                                            'address' => $request->address,
-                                            'logo' => $request->logo->getClientOriginalName(),
-                                        ]);
+                                    [
+                                        'email' => $request->email,
+                                        'telephone' => $request->telephone,
+                                        'mobile' => $request->mobile,
+                                        'hotline' => $request->hotline,
+                                        'address' => $request->address,
+                                        'logo' => $request->logo->getClientOriginalName(),
+                                    ]);
         if($request->has('logo') && $companyDetails)
         {
             $addMedia = $companyDetails->addMediaFromRequest('logo')->withResponsiveImages()->toMediaCollection('logo');
         }
-        return response(['status' => 'success', 'message' => 'Company details added successfully.']);
+
+        Alert::success('Success', 'Company details added successfully.');
+        return redirect()->back();
+        // return response(['status' => 'success', 'message' => 'Company details added successfully.']);
     }
 
-    public function updateCompanyDetails(Request $request, Settings $companyDetails)
+    public function updateCompanyDetails(CompanySettingRequest $request)
     {
-        $validatedData = $request->validate([
-            'company_name' => 'required|unique:settings,id,'.$request->id,
-            'email' => 'required|email',
-            'telephone' => 'required',
-            'mobile' => 'required',
-            'hotline' => 'required',
-            'address' => 'required|max:100',
-            'logo' => 'image|mimes:jpeg,jpg,png,gif|max:2048',
-        ]);
-
+        $companyDetails = Settings::find($request->id);
         $updateCompanyDetails = $companyDetails->update([
-                                            'company_name' => $request->company_name,
-                                            'email' => $request->email,
-                                            'telephone' => $request->telephone,
-                                            'mobile' => $request->mobile,
-                                            'hotline' => $request->hotline,
-                                            'address' => $request->address,
-                                            'logo' => $request->slider ? $request->logo->getClientOriginalName() : $companyDetails->logo,
-                                        ]);
-        if($request->has('logo') && $updateCompanyDetails)
+                                    'company_name' => $request->company_name,
+                                    'email' => $request->email,
+                                    'telephone' => $request->telephone,
+                                    'mobile' => $request->mobile,
+                                    'hotline' => $request->hotline,
+                                    'address' => $request->address,
+                                    'logo' => $request->hasFile('logo') ? $request->logo->getClientOriginalName() : $companyDetails->logo,
+                                ]);
+        if($request->hasFile('logo') && $updateCompanyDetails)
         {
             $addMedia = $companyDetails->addMediaFromRequest('logo');
         }
-        return response(['status' => 'success', 'message' => 'Company details added successfully.']);
+
+        if($updateCompanyDetails)
+        {
+            Alert::success('Success', 'Company details updated successfully.');
+            return redirect()->back();
+            // return response(['status' => 'success', 'message' => 'Company details added successfully.']);
+        }
     }
 }

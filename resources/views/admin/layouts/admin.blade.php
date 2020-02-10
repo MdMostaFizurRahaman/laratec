@@ -41,6 +41,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
+@include('sweetalert::alert')
 
 <!-- jQuery -->
 <script src="{{asset('admin')}}/plugins/jquery/jquery.min.js"></script>
@@ -50,7 +51,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{asset('admin')}}/dist/js/adminlte.min.js"></script>
 {{-- Toaster JS --}}
 <script src="{{asset('admin')}}/plugins/toastr/jquery.toast.min.js"></script>
-    {{-- Custom JS --}}
+{{-- Custom JS --}}
 {{-- <script src="{{asset('js/app.js')}}"></script> --}}
 
 @stack('scripts')
