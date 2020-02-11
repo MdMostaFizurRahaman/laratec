@@ -20,7 +20,7 @@ class CompanySettingRequest extends FormRequest
             case 'POST':
             case 'PUT':
             case 'PATCH':
-                return $settings = Settings::find($this->id)->exists();
+                return $settings = $this->id ? Settings::find($this->id)->exists() : true;
                 // return $settings = Settings::find($this->route('id'))->exists();
 
                 // return $settings && $this->user()->can('update', $id);

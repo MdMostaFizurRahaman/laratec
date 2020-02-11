@@ -20,7 +20,7 @@ class CarouselRequest extends FormRequest
             case 'POST':
             case 'PUT':
             case 'PATCH':
-                return $carousel = Carousel::find($this->id)->exists();
+                return $carousel = $this->id ? Carousel::find($this->id)->exists() : true;
                 // return $carousel = Carousel::find($this->route('id'))->exists();
 
                 // return $carousel && $this->user()->can('update', $id);
