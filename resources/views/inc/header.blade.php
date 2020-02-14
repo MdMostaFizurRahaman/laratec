@@ -1,18 +1,9 @@
-@php
-    $company = App\Models\Settings::first();
-@endphp
 <header id="header">
     <div class="top-header bg-color2">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-xs-12">
-                    <p class="desc white hot-line"><span class="smoke">Call Hotline:</span>
-                        @if(!empty($company))
-                        {{$company->hotline}}
-                        @else
-                        {{'01711-085864'}}
-                        @endif
-                    </p>
+                    <p class="desc white hot-line"><span class="smoke">Call Hotline:</span> {{getSettings()->hotline ?? "01711 112 222"}}</p>
                 </div>
                 <div class="col-sm-6 col-xs-12">
                     <ul class="search-cart-top list-inline-block pull-right">
@@ -56,7 +47,7 @@
                                         </div>
                                         <div class="product-mini-cart table">
                                             <div class="product-thumb">
-                                                <a href="detail.html" class="product-thumb-link"><img alt="" src="{{asset('theme')}}/images/product/fb-tech-watch-02.png"></a>
+                                                <a href="detail.html" class="product-thumb-link"><img alt="" src="{{getSettings()->getFirstMediaUrl()}}"></a>
                                             </div>
                                             <div class="product-info">
                                                 <h3 class="product-title title16 font-bold"><a href="#">Ella angle2</a></h3>
@@ -96,11 +87,7 @@
                 <div class="col-md-3 col-sm-12 col-xs-9">
                     <div class="logo logo1">
                         <h1 class="hidden">FB-Tech</h1>
-                        @if (!empty($company))
-                            <a href="#"><img src="{{asset('public').$company->getFirstMediaUrl('logo')}}" width='100' height="60" style="border-radius: 5px;" alt=""></a>
-                        @else
-                            <a href="#"><img src="{{asset('theme')}}/images/brand/homepage_brand1.png" width='100' height="60" style="border-radius: 5px;" alt=""></a>
-                        @endif
+                        <a href="#"><img src="{{logo()}}" alt="" width="180px" height="60px"></a>
                     </div>
                 </div>
                 <div class="col-md-9 col-sm-12 col-xs-3">

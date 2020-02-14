@@ -46,7 +46,6 @@ Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function () {
 
     Route::get('/company', 'SettingsController@showCompanyDetailsForm')->name('company.details');
     Route::post('/company', 'SettingsController@storeCompanyDetails')->name('company.details.store');
-    Route::post('/company/update', 'SettingsController@updateCompanyDetails')->name('company.details.update');
 
     // Carousel Routes
     Route::get('/carousels', 'CarouselController@carousels')->name('carousels');

@@ -4,7 +4,7 @@
             <div class="logo-footer inline-block"><a href="#"><img src="{{asset('theme')}}/images/home/home1/logo-footer.png" alt="" /></a></div>
             <ul class="menu-footer list-inline-block inline-block">
                 <li><a href="#" class="white">Home </a></li>
-                <li><a href="#" class="white">About FB-Tech</a></li>
+                <li><a href="#" class="white">About {{getSettings()->companyName ?? config('app.name', 'Laravel')}}</a></li>
                 <li><a href="#" class="white">Contact Us</a></li>
                 <li><a href="#" class="white">Blog</a></li>
                 <li><a href="#" class="white">Customer Service </a></li>
@@ -23,9 +23,9 @@
                         <div class="footer-box">
                             <h2 class="title-footer title18 white">Contact Me</h2>
                             <div class="contact-footer-box">
-                                <p class="desc smoke"><i class="white icon ion-ios-location"></i>400 Fashion Lane, Ste. 360 Texac, CA 92780</p>
-                                <p class="desc smoke"><i class="white icon ion-android-mail"></i><a href="mailto:mailsupport@gmail.com" class="smoke">mailsupport@gmail.com</a></p>
-                                <p class="desc smoke"><i class="white icon ion-android-call"></i>+080 9666 35520</p>
+                                <p class="desc smoke"><i class="white icon ion-ios-location"></i>{{getSettings()->address ?? "400 Fashion Lane, Ste. 360 Texac, CA 92780"}}</p>
+                                <p class="desc smoke"><i class="white icon ion-android-mail"></i><a href="mailto:mailsupport@gmail.com" class="smoke">{{getSettings()->email ?? "400 Fashion Lane, Ste. 360 Texac, CA 92780"}}</a></p>
+                                <p class="desc smoke"><i class="white icon ion-android-call"></i>{{getSettings()->telephone ?? "400 Fashion Lane, Ste. 360 Texac, CA 92780"}}</p>
                             </div>
                         </div>
                         <div class="footer-box">
@@ -93,10 +93,10 @@
             <div class="design-copyright">
                 <div class="row">
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <p class="desc white copyright">@2018 WooCommerce Shop Demo.</p>
+                        <p class="desc white copyright">{{getSettings()->footerText ?? "@2019 Ahmed Shakil all rights reserved."}}</p>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <p class="desc white design-by text-right">Design by: <a href="#" class="smoke">7uptheme.com</a></p>
+                        <p class="desc white design-by text-right">Developed by: <a href="http://ahmedshakil.com" class="smoke">Ahmed Shail</a></p>
                     </div>
                 </div>
             </div>

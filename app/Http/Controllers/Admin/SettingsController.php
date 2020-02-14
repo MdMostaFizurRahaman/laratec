@@ -2,68 +2,40 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Alert;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\SettingsRequest;
 use App\Models\Settings;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\CompanySettingRequest;
 
 class SettingsController extends Controller
 {
     public function __construct()
     {
+
         $this->middleware('auth:admin');
     }
 
+    /**
+     * @return \Illuminate\Http\Response
+     */
     public function showCompanyDetailsForm()
     {
-        $company = Settings::first();
-        return view('admin.pages.settings.company')->with(compact('company'));
+        $settings = Settings::first();
+        return view('admin.pages.settings.company', compact('settings'));
     }
 
-    public function storeCompanyDetails(CompanySettingRequest $request)
+    public function storeCompanyDetails(SettingsRequest $request)
     {
-        $companyDetails = Settings::firstOrCreate(['company_name' => $request->company_name],
-                                    [
-                                        'email' => $request->email,
-                                        'telephone' => $request->telephone,
-                                        'mobile' => $request->mobile,
-                                        'hotline' => $request->hotline,
-                                        'address' => $request->address,
-                                        'logo' => $request->logo->getClientOriginalName(),
-                                    ]);
-        if($request->has('logo') && $companyDetails)
-        {
-            $addMedia = $companyDetails->addMediaFromRequest('logo')->withResponsiveImages()->toMediaCollection('logo');
+        $settings = Settings::find(1);
+
+        if ($settings) {
+            $settings->update($request->except(['logo', '_token']));
+        } else {
+            $settings = Settings::create($request->except(['logo', '_token']));
         }
 
-        Alert::success('Success', 'Company details added successfully.');
-        return redirect()->back();
-        // return response(['status' => 'success', 'message' => 'Company details added successfully.']);
-    }
+        $settings->addMedia(request()->file('logo'))->toMediaCollection('settings');;
 
-    public function updateCompanyDetails(CompanySettingRequest $request)
-    {
-        $companyDetails = Settings::find($request->id);
-        $updateCompanyDetails = $companyDetails->update([
-                                    'company_name' => $request->company_name,
-                                    'email' => $request->email,
-                                    'telephone' => $request->telephone,
-                                    'mobile' => $request->mobile,
-                                    'hotline' => $request->hotline,
-                                    'address' => $request->address,
-                                    'logo' => $request->hasFile('logo') ? $request->logo->getClientOriginalName() : $companyDetails->logo,
-                                ]);
-        if($request->hasFile('logo') && $updateCompanyDetails)
-        {
-            $addMedia = $companyDetails->addMediaFromRequest('logo');
-        }
-
-        if($updateCompanyDetails)
-        {
-            Alert::success('Success', 'Company details updated successfully.');
-            return redirect()->back();
-            // return response(['status' => 'success', 'message' => 'Company details added successfully.']);
-        }
+        return redirect()->back()->with('success', 'Company details updated successfully');
     }
 }
