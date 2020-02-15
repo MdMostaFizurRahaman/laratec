@@ -15,7 +15,12 @@
             <div class="col-lg-12">
                 <div class="card card-primary card-outline">
                     <div class="card-body">
-                        {!! Form::model($settings, ['route' => 'admin.company.details.store', 'method' => 'post', 'files' => true]) !!}
+                        @if (!empty($settings))
+
+                            {!! Form::model($settings, ['route' => 'admin.company.details.store', 'method' => 'post', 'files' => true]) !!}
+                        @else
+                            {!! Form::open(['route' => 'admin.company.details.store', 'method' => 'post', 'files' => true]) !!}
+                        @endif
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
@@ -85,7 +90,7 @@
                                 <div class="col-sm-6" style="margin: auto">
                                     <div class="form-group">
                                         <label for="">Logo Image</label>
-                                    <input class="form-control dropify" type="file" name="logo" data-default-file="{{$settings->getFirstMediaUrl('settings')}}">
+                                    <input class="form-control dropify" type="file" name="logo" data-default-file="{{!empty($settings) ? $settings->getFirstMediaUrl('settings') : null}}">
                                         <label class="text-danger">* Image height should be 179x58 px. </label>
                                     </div>
                                 </div>

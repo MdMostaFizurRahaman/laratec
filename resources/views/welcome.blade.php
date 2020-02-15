@@ -13,6 +13,6 @@
     @include('partials.body')
     @include('partials.quote')
     @include('partials.blog')
-    
+
 </section>
 @endsection

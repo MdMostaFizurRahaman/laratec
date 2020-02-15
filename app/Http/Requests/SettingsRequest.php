@@ -13,7 +13,7 @@ class SettingsRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,15 @@ class SettingsRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'company_name' => 'required|string|max:45',
+            'telephone' => 'required|string|max:20',
+            'mobile' => 'required|string|max:20',
+            'hotline' => 'required|string|max:20',
+            'description' => 'nullable|string|max:200',
+            'address' => 'nullable|string|max:200',
+            'footer_text' => 'nullable|string|max:191',
+            'meta_tags' => 'nullable|string|max:191',
+            'logo' => 'required|image|mimes:jpg,jpeg,png,svg,gif',
         ];
     }
 }

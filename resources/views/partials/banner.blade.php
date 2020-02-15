@@ -165,17 +165,19 @@
     </div>
     <!-- End Box Intro -->
 </div>
-<div class="parallax featured-banner-product" data-image="{{asset('theme')}}/images/home/home1/banner1.jpg">
+
+{{-- Feature Section --}}
+<div class="parallax featured-banner-product" data-image="{{getFeatureSectionImage() ?? "theme/images/home/home1/banner1.jpg"}}">
     <div class="banner-info">
         <div class="container">
             <div class="featured-banner-info wow zoomIn">
                 <h3 class="title30 title-line-after">Featured</h3>
-                <h2 class="title60 color">Product</h2>
-                <h3 class="title30 silver font-light">The latest technology</h3>
-                <h3 class="title30 font-light color">$890.00</h3>
+                <h2 class="title60 color">{{getFeatureSection()->title}}</h2>
+                <h3 class="title30 silver font-light">{{getFeatureSection()->subTitle}}</h3>
+                <h3 class="title30 font-light color">৳{{getFeatureSection()->price}}</h3>
                 <div class="banner-button">
-                    <a href="#" class="shop-button color">Shop Now</a>
-                    <a href="#" class="shop-button bg-color2">More Detail</a>
+                    <a href="{{getFeatureSection()->shopNowLink}}" class="shop-button color">Shop Now</a>
+                    <a href="{{getFeatureSection()->detailsLink}}" class="shop-button bg-color2">More Detail</a>
                 </div>
             </div>
         </div>

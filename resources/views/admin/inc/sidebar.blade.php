@@ -146,7 +146,7 @@
 
             {{-- Feature Section --}}
             <li class="nav-item">
-              <a href="{{route('admin.categories.index')}}" class="nav-link {{Request::is('admin/carousel') || Request::is('admin/carasouls/*') ? 'active' : ''}}">
+              <a href="{{route('admin.feature-section.index')}}" class="nav-link {{Request::is('admin/feature-section') ? 'active' : ''}}">
                 <i class="nav-icon fas fa-award"></i>
                 <p>
                   Featured

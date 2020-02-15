@@ -2,19 +2,19 @@
 
 namespace App\Models;
 
+use Eloquence\Behaviours\CamelCasing;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-class Settings extends Model implements HasMedia
+class FeatureSection extends Model implements HasMedia
 {
-    use HasMediaTrait;
+    use CamelCasing, HasMediaTrait;
 
-    protected $table = "settings";
     protected $guarded = [];
 
     public function registerMediaCollection()
     {
-        $this->addMediaCollection('logo')->singleFile();
+        $this->addMediaCollection('feature')->singleFile();
     }
 }

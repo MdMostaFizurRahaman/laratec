@@ -51,6 +51,10 @@ Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function () {
     Route::get('/carousels', 'CarouselController@carousels')->name('carousels');
     Route::post('/carousel', 'CarouselController@store')->name('carousel.store');
     Route::post('/carousel/update', 'CarouselController@update')->name('carousel.update');
+
+    // Feature Section Routes
+    Route::get('/feature-section', 'FeatureSectionController@index')->name('feature-section.index');
+    Route::post('/feature-section', 'FeatureSectionController@store')->name('feature-section.store');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

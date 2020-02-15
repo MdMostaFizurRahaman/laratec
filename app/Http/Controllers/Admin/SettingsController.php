@@ -34,7 +34,10 @@ class SettingsController extends Controller
             $settings = Settings::create($request->except(['logo', '_token']));
         }
 
-        $settings->addMedia(request()->file('logo'))->toMediaCollection('settings');;
+        if($request->has('logo')){
+
+            $settings->addMedia(request()->file('logo'))->toMediaCollection('settings');
+        }
 
         return redirect()->back()->with('success', 'Company details updated successfully');
     }
