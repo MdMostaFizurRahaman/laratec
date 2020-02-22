@@ -15,8 +15,8 @@
                         <div class="container">
                             <div class="banner-info-inner text-center">
                                 {{-- <h3 class="title14 color title-underline">13-inch Chassis</h3>	 --}}
-                                <h2 class="title30 color">{{$aboutUs->title}}</h2>
-                                <p class="desc white" style="font-size:20px">{{$aboutUs->subtitle}}</p>
+                                <h2 class="title30 color">{{!empty($aboutUs) ? $aboutUs->title : null}}</h2>
+                                <p class="desc white" style="font-size:20px">{{!empty($aboutUs) ? $aboutUs->subtitle : null}}</p>
                             </div>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
         <div class="content-pages">
             <div class="content-about">
                 <h2 class="title30 text-uppercase font-bold">about us</h2>
-                <p class="desc">{{$aboutUs->description}}</p>
+                <p class="desc">{{!empty($aboutUs) ? $aboutUs->description : null}}</p>
 
                 <div class="about-client" style="margin-top:20px">
                     <h2 class="title18 rale-font text-uppercase font-bold">What people are saying</h2>

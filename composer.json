@@ -42,7 +42,6 @@
         },
         "files": [
             "app/Helpers/Settings.php",
-            "app/Helpers/FeatureSection.php",
             "app/Helpers/Money.php"
         ],
         "classmap": [
