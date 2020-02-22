@@ -17,7 +17,7 @@
                         </div>
                         <div class="product-extra-link style1">
                             <a href="#" class="wishlist-link color title30"><i class="icon ion-android-favorite-outline"></i></a>
-                            <a href="#" class="addcart-link shop-button color">View Details </a>
+                        <a href="#" class="addcart-link shop-button color">View Details </a>
                             <a href="#" class="compare-link color title30"><i class="icon ion-ios-checkmark-outline"></i></a>
                         </div>
                         <div class="product-rate">
@@ -30,34 +30,20 @@
         </div>
     </div>
     <!-- End Trending Box -->
-    <div class="list-intro-box box-hover-active">
-        <div class="row">
-            <div class="col-md-4 col-sm-4 col-xs-12">
-                <div class="item-hover-active item-intro-box wow bounceInRight" data-wow-delay="0s"><a href="#" class="color text-uppercase">STUDENTS! WIN A DREAM HOLIDAY<br> + GET 10% OFF 24/7</a></div>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-12">
-                <div class="item-hover-active item-intro-box wow bounceInRight active item-active" data-wow-delay="0.4s"><a href="#" class="color text-uppercase">UNLIMITED NEXT-DAY DELIVERY TO THE UK<br> ONLY £9.95 A YEAR</a></div>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-12">
-                <div class="item-hover-active item-intro-box wow bounceInRight" data-wow-delay="0.8s"><a href="#" class="color text-uppercase">FREE DELIVERY WORLDWIDE*<br> *MORE INFO HERE</a></div>
-            </div>
-        </div>
-    </div>
-    <!-- End Box Intro -->
 </div>
 
 {{-- Feature Section --}}
-<div class="parallax featured-banner-product" data-image="{{getFeatureSectionImage() ?? "theme/images/home/home1/banner1.jpg"}}">
+<div class="parallax featured-banner-product" data-image="{{!empty($feature) ? $feature->getFirstMediaUrl('general') : "theme/images/home/home1/banner1.jpg"}}">
     <div class="banner-info">
         <div class="container">
             <div class="featured-banner-info wow zoomIn">
                 <h3 class="title30 title-line-after">Featured</h3>
-                <h2 class="title60 color">{{getFeatureSection()->title}}</h2>
-                <h3 class="title30 silver font-light">{{getFeatureSection()->subTitle}}</h3>
-                <h3 class="title30 font-light color">৳{{getFeatureSection()->price}}</h3>
+                <h2 class="title60 color">{{!empty($feature) ? $feature->title : null}}</h2>
+                <h3 class="title30 silver font-light">{{!empty($feature) ? $feature->subtitle : null}}</h3>
+                <h3 class="title30 font-light color">{{money(!empty($feature) ? $feature->price : 0)}}</h3>
                 <div class="banner-button">
-                    <a href="{{getFeatureSection()->shopNowLink}}" class="shop-button color">Shop Now</a>
-                    <a href="{{getFeatureSection()->detailsLink}}" class="shop-button bg-color2">More Detail</a>
+                    <a href="{{!empty($feature) ? $feature->shopNowLink : null}}" class="shop-button color">Shop Now</a>
+                    <a href="{{!empty($feature) ? $feature->detailsLink : null}}" class="shop-button bg-color2">More Detail</a>
                 </div>
             </div>
         </div>

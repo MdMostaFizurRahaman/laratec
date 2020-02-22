@@ -21,7 +21,7 @@ class FeatureSectionController extends Controller
     public function index()
     {
         $featureSection = FeatureSection::first();
-        return view('admin.pages.feature-section.index', \compact('featureSection'));
+        return view('admin.pages.feature-section.index');
     }
 
     /**

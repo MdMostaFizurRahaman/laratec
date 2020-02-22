@@ -15,8 +15,8 @@
             <div class="col-lg-12">
                 <div class="card card-primary card-outline">
                     <div class="card-body">
-                        @if (!empty($featureSection))
-                            {!! Form::model($featureSection, ['route' => 'admin.feature-section.store', 'method' => 'post', 'files' => true]) !!}
+                        @if (!empty($feature))
+                            {!! Form::model($feature, ['route' => 'admin.feature-section.store', 'method' => 'post', 'files' => true]) !!}
                         @else
                             {!! Form::open(['route' => 'admin.feature-section.store', 'method' => 'post', 'files' => true]) !!}
                         @endif
@@ -73,7 +73,7 @@
                                 <div class="col-lg-8" style="margin: auto">
                                     <div class="form-group">
                                         <label for="">Featured Image</label>
-                                        <input class="form-control dropify" type="file" data-height="250" name="image" data-default-file="{{getFeatureSectionImage()}}">
+                                        <input class="form-control dropify" type="file" data-height="250" name="image" data-default-file="{{!empty($feature) ? $feature->getFirstMediaUrl('general') : null}}">
                                         <label class="text-danger">* Image height should be 1920x960 px. </label>
                                     </div>
                                 </div>
