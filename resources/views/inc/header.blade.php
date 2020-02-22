@@ -96,36 +96,13 @@
                             <li class="menu-item-has-children">
                                 <a href="{{url('/')}}"><i class="icon ion-ios-home"></i>Home</a>
                             </li>
-                            <li><a href="#"><i class="icon ion-at"></i>Contact Us</a></li>
-                            <li><a href="#"><i class="icon ion-help"></i>About Us</a></li>
+                            <li><a href="{{route('contact-us')}}"><i class="icon ion-at"></i>Contact Us</a></li>
+                            <li><a href="{{route('about-us')}}"><i class="icon ion-help"></i>About Us</a></li>
                             <li class="menu-item-has-children">
-                                <a href="#"><i class="icon ion-bag"></i>Shop</a>
-                                <ul class="list-none sub-menu">
-                                    <li><a href="listview.html">List View</a></li>
-                                    <li><a href="list-with-sidebar.html">List With Sidebar</a></li>
-                                    <li><a href="gridview.html">Grid View</a></li>
-                                    <li><a href="grid-with-sidebar.html">Grid With Sidebar</a></li>
-                                    <li class="menu-item-has-children">
-                                        <a href="detail.html">Product Detail</a>
-                                        <ul class="list-none sub-menu">
-                                            <li><a href="detail.html">Detail Full Width</a></li>
-                                            <li><a href="detail-with-sidebar.html">Detail With Sidebar</a></li>
-                                            <li><a href="detail-service-right.html">Detail With Service</a></li>
-                                            <li><a href="detail-extra-link.html">Detail Extra Link</a></li>
-                                            <li><a href="detail-group.html">Detail Group</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="cart.html">Product Cart</a></li>
-                                    <li><a href="checkout.html">Product Check Out</a></li>
-                                </ul>
+                                <a href="{{route('shop')}}"><i class="icon ion-bag"></i>Shop</a>
                             </li>
                             <li class="menu-item-has-children">
-                                <a href="#"><i class="icon ion-compose"></i>Blog Page</a>
-                                <ul class="list-none sub-menu">
-                                    <li><a href="blog-list.html">Blog List</a></li>
-                                    <li><a href="blog-grid.html">Blog Grid</a></li>
-                                    <li><a href="blog-detail.html">Blog Detail</a></li>
-                                </ul>
+                                <a href="{{route('blog')}}"><i class="icon ion-compose"></i>Blog Page</a>
                             </li>
                         </ul>
                         <a href="#" class="toggle-mobile-menu"><span></span></a>

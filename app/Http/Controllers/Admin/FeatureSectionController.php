@@ -51,7 +51,7 @@ class FeatureSectionController extends Controller
         }
 
         if($request->has('image')){
-            $featureSection->addMedia(request()->file('image'))->toMediaCollection('feature');
+            $featureSection->addMedia(request()->file('image'))->toMediaCollection('general');
         }
 
         return redirect()->back()->with('success', 'Featured Section updated successfully');

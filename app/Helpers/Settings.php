@@ -10,7 +10,7 @@ function getSettings()
 function logo()
 {
     if(!empty(getSettings())){
-        return getSettings()->getFirstMediaUrl('settings');
+        return getSettings()->getFirstMediaUrl('general');
     }
     else{
         return "theme/images/home/home1/logo.png";

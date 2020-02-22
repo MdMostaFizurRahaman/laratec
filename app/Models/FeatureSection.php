@@ -15,6 +15,6 @@ class FeatureSection extends Model implements HasMedia
 
     public function registerMediaCollection()
     {
-        $this->addMediaCollection('feature')->singleFile();
+        $this->addMediaCollection('general')->singleFile();
     }
 }

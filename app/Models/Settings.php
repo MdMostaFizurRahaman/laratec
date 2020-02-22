@@ -13,8 +13,8 @@ class Settings extends Model implements HasMedia
     protected $table = "settings";
     protected $guarded = [];
 
-    public function registerMediaCollection()
+    public function registerMediaCollections()
     {
-        $this->addMediaCollection('logo')->singleFile();
+        $this->addMediaCollection('general')->singleFile();
     }
 }

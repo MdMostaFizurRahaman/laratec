@@ -19,7 +19,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.categories.index');    
+        return view('admin.pages.categories.index');
     }
 
     /**
@@ -66,6 +66,11 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        if($category->products()->exists()){
+            return redirect()->back()->with('error', 'You can not delete it now. There are some product related to it.');
+        }
+
+        $category->delete();
+        return redirect()->back()->with('success', 'Category deleted successfully');
     }
 }

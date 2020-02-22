@@ -32,7 +32,7 @@
               </a>
             </li>
             <li class="nav-item has-treeview {{Request::is('admin/products') || Request::is('admin/products/*') ? 'menu-open' : ''}}">
-              <a href="#" class="nav-link {{Request::is('admin/products') || Request::is('admin/products/*') ? 'active' : ''}}">
+                <a href="" class="nav-link {{Request::is('admin/products') || Request::is('admin/products/*') ? 'active' : ''}}">
                 <i class="nav-icon fas fa-cubes"></i>
                 <p>
                   Products
@@ -41,13 +41,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link {{Request::is('admin/products/create') ? 'active' : ''}}">
+                  <a href="{{route("admin.products.create")}}" class="nav-link {{Request::is('admin/products/create') ? 'active' : ''}}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Create Product</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link {{Request::is('admin/products') || Request::is('admin/products/*/edit') ? 'active' : ''}}">
+                  <a href="{{route("admin.products.index")}}" class="nav-link {{Request::is('admin/products') || Request::is('admin/products/*/edit') ? 'active' : ''}}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Manage Products</p>
                   </a>
@@ -56,8 +56,8 @@
             </li>
 
             {{-- Pages Section --}}
-            <li class="nav-item has-treeview {{Request::is('admin/products') || Request::is('admin/products/*') ? 'menu-open' : ''}}">
-              <a href="#" class="nav-link {{Request::is('admin/settings') || Request::is('admin/settings/*') ? 'active' : ''}}">
+            <li class="nav-item has-treeview {{Request::is('admin/pages') || Request::is('admin/pages/*') ? 'menu-open' : ''}}">
+              <a href="#" class="nav-link {{Request::is('admin/pages') || Request::is('admin/pages/*') ? 'active' : ''}}">
                 <i class="nav-icon fas fa-file-alt"></i>
                 <p>
                     Pages
@@ -66,13 +66,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link {{Request::is('admin/products/create') ? 'active' : ''}}">
+                    <a href="{{route('admin.about-us.index')}}" class="nav-link {{Request::is('admin/pages/about-us') ? 'active' : ''}}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>About Us</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link {{Request::is('admin/products') || Request::is('admin/products /*/edit') ? 'active' : ''}}">
+                  <a href="#" class="nav-link {{Request::is('admin/demo') || Request::is('admin/demo /*/edit') ? 'active' : ''}}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Contact Us</p>
                   </a>
@@ -82,25 +82,25 @@
             {{-- End Pages Section --}}
 
             {{-- Blog Section --}}
-            <li class="nav-item has-treeview {{Request::is('admin/products') || Request::is('admin/products/*') ? 'menu-open' : ''}}">
-              <a href="#" class="nav-link {{Request::is('admin/settings') || Request::is('admin/settings/*') ? 'active' : ''}}">
+            <li class="nav-item has-treeview {{Request::is('admin/posts') || Request::is('admin/posts/*') ? 'menu-open' : ''}}">
+              <a href="#" class="nav-link {{Request::is('admin/posts') || Request::is('admin/posts/*') ? 'active' : ''}}">
                 <i class="nav-icon fas fa-comments"></i>
                 <p>
-                    Blogs
+                    Posts
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link {{Request::is('admin/products/create') ? 'active' : ''}}">
+                    <a href="{{route('admin.posts.create')}}" class="nav-link {{Request::is('admin/posts/create') ? 'active' : ''}}">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Category</p>
+                    <p>Create Post</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link {{Request::is('admin/products') || Request::is('admin/products /*/edit') ? 'active' : ''}}">
+                    <a href="{{route('admin.posts.index')}}" class="nav-link {{Request::is('admin/posts') || Request::is('admin/posts/*/edit') ? 'active' : ''}}">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Post</p>
+                    <p>Manage Posts</p>
                   </a>
                 </li>
               </ul>
@@ -108,8 +108,8 @@
             {{-- Eng Blog Section --}}
 
             {{-- Settings Section --}}
-            <li class="nav-item has-treeview {{Request::is('admin/company') || Request::is('admin/products/*') ? 'menu-open' : ''}}">
-              <a href="#" class="nav-link {{Request::is('admin/company') || Request::is('admin/settings/*') ? 'active' : ''}}">
+            <li class="nav-item has-treeview {{Request::is('admin/company') || Request::is('admin/our-customers') || Request::is('admin/our-customers/*') ? 'menu-open' : ''}}">
+              <a href="#" class="nav-link {{Request::is('admin/company') || Request::is('admin/our-customers') || Request::is('admin/our-customers/*') ? 'menu-open' : ''}} ? 'active' : ''}}">
                 <i class="nav-icon fas fa-cogs"></i>
                 <p>
                     Settings
@@ -124,9 +124,9 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link {{Request::is('admin/products') || Request::is('admin/products /*/edit') ? 'active' : ''}}">
+                  <a href="{{route('admin.our-customers.index')}}" class="nav-link {{Request::is('admin/our-customers') || Request::is('admin/our-customers/*/edit') ? 'active' : ''}}">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Partners</p>
+                    <p>Our Customers</p>
                   </a>
                 </li>
               </ul>
@@ -157,7 +157,7 @@
 
             {{-- Offer Section --}}
             <li class="nav-item">
-              <a href="{{route('admin.categories.index')}}" class="nav-link {{Request::is('admin/carousel') || Request::is('admin/carasouls/*') ? 'active' : ''}}">
+              <a href="{{route('admin.offer-section.index')}}" class="nav-link {{Request::is('admin/offer-section') ? 'active' : ''}}">
                 <i class="nav-icon fas fa-gift"></i>
                 <p>
                   Offers
@@ -173,12 +173,12 @@
               <a href="{{route('admin.categories.index')}}" class="nav-link {{Request::is('admin/carousel') || Request::is('admin/carasouls/*') ? 'active' : ''}}">
                 <i class="nav-icon fas fa-quote-right"></i>
                 <p>
-                  Quotes
+                  Testimonial
                 </p>
               </a>
             </li>
             {{-- User Section --}}
-            <li class="nav-item has-treeview {{Request::is('admin/products') || Request::is('admin/products/*') ? 'menu-open' : ''}}">
+            <li class="nav-item has-treeview {{Request::is('admin/demo') || Request::is('admin/demo/*') ? 'menu-open' : ''}}">
               <a href="#" class="nav-link {{Request::is('admin/settings') || Request::is('admin/settings/*') ? 'active' : ''}}">
                 <i class="nav-icon fas fa-users"></i>
                 <p>
@@ -188,13 +188,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link {{Request::is('admin/products/create') ? 'active' : ''}}">
+                  <a href="#" class="nav-link {{Request::is('admin/demo/create') ? 'active' : ''}}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Create User</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link {{Request::is('admin/products') || Request::is('admin/products /*/edit') ? 'active' : ''}}">
+                  <a href="#" class="nav-link {{Request::is('admin/demo') || Request::is('admin/demo /*/edit') ? 'active' : ''}}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Manage Users</p>
                   </a>

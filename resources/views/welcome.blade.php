@@ -10,9 +10,9 @@
     @include('partials.banner')
     @include('partials.body')
     @include('partials.offer')
-    @include('partials.body')
-    @include('partials.quote')
+    {{-- @include('partials.quote') --}}
     @include('partials.blog')
+    @include('partials.brand')
 
 </section>
 @endsection

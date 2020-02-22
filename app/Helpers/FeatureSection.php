@@ -10,7 +10,7 @@ function getFeatureSection()
 function getFeatureSectionImage()
 {
     if(!empty(getSettings())){
-        return getFeatureSection()->getFirstMediaUrl('feature');
+        return getFeatureSection()->getFirstMediaUrl('general');
     }else{
         return null;
     }

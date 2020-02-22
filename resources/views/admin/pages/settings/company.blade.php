@@ -90,7 +90,7 @@
                                 <div class="col-sm-6" style="margin: auto">
                                     <div class="form-group">
                                         <label for="">Logo Image</label>
-                                    <input class="form-control dropify" type="file" name="logo" data-default-file="{{!empty($settings) ? $settings->getFirstMediaUrl('settings') : null}}">
+                                        <input class="form-control dropify" type="file" name="logo" data-default-file="{{!empty($settings) ? $settings->getFirstMediaUrl('general') : null}}">
                                         <label class="text-danger">* Image height should be 179x58 px. </label>
                                     </div>
                                 </div>

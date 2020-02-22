@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.pages.products.index');
     }
 
     /**
@@ -25,7 +26,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return \view('admin.pages.products.create');
     }
 
     /**
@@ -34,9 +35,11 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+        $product = Product::create($request->except(['image', 'home']));
+
+        return redirect()->route('admin.products.index')->with('success', 'Product created successfully');
     }
 
     /**
@@ -58,7 +61,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('admin.pages.products.edit', compact('product'));
     }
 
     /**
@@ -68,9 +71,20 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
-        //
+        $product->update($request->except(['image', 'home']));
+
+
+        if($request->hasFile('image')){
+            $product->addMedia($request->file('image'))->toMediaCollection('product-image');
+        }
+
+        if($request->hasFile('home')){
+            $product->addMedia($request->file('home'))->toMediaCollection('product-home');
+        }
+
+        return \redirect()->route('admin.products.index')->with('success', 'Product updated successfully');
     }
 
     /**
@@ -81,6 +95,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->back()->with('success', 'Product deleted successfully');
     }
 }

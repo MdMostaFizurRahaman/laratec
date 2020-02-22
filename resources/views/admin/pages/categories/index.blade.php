@@ -17,7 +17,7 @@
                 <div class="card-header">
                     <h5>{{!empty($category) ? 'Update' : 'Create'}} Categories</h5>
                 </div>
-                {!! Form::open(['route' => !empty($category) ? ['admin.categories.update', $category->id] : 'admin.categories.store', 
+                {!! Form::open(['route' => !empty($category) ? ['admin.categories.update', $category->id] : 'admin.categories.store',
                 'method' => !empty($category) ? 'PUT' : 'POST']) !!}
                     <div class="card-body">
                         <div class="form-group">
@@ -36,7 +36,7 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-6">
-                                
+
                                 <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-save mr-2"></i>Save</button>
                             </div>
                             <div class="col-lg-6">
@@ -66,6 +66,11 @@
                                     <td>{{$category->description}}</td>
                                     <td>
                                         <a href="{{route('admin.categories.edit', $category->id)}}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
+                                        <a href="#" class="btn btn-danger btn-sm"
+                                           onclick="if (confirm(&quot;Are you sure you want to delete ?&quot;)) { document.getElementById('deleteForm{{ $category->id }}').submit(); } event.returnValue = false; return false;"><i
+                                                    class="fa fa-trash"></i></a>
+                                        {!! Form::open(['method'=>'DELETE', 'action'=>['Admin\CategoryController@destroy', $category->id], 'id'=>'deleteForm'.$category->id]) !!}
+                                        {!! Form::close() !!}
                                     </td>
                                 </tr>
                            @endforeach
@@ -82,5 +87,5 @@
     </div><!-- /.container-fluid -->
 </div>
 <!-- /.content -->
-    
+
 @endsection

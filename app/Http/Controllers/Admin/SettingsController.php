@@ -36,7 +36,7 @@ class SettingsController extends Controller
 
         if($request->has('logo')){
 
-            $settings->addMedia(request()->file('logo'))->toMediaCollection('settings');
+            $settings->addMedia(request()->file('logo'))->toMediaCollection('general');
         }
 
         return redirect()->back()->with('success', 'Company details updated successfully');

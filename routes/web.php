@@ -43,9 +43,12 @@ Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function () {
 
     Route::resource('categories', 'CategoryController');
     Route::resource('products', 'ProductController');
+    Route::resource('posts', 'PostController');
 
     Route::get('/company', 'SettingsController@showCompanyDetailsForm')->name('company.details');
     Route::post('/company', 'SettingsController@storeCompanyDetails')->name('company.details.store');
+
+    Route::resource('our-customers', 'OurCustomerController');
 
     // Carousel Routes
     Route::get('/carousels', 'CarouselController@carousels')->name('carousels');
@@ -55,6 +58,18 @@ Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function () {
     // Feature Section Routes
     Route::get('/feature-section', 'FeatureSectionController@index')->name('feature-section.index');
     Route::post('/feature-section', 'FeatureSectionController@store')->name('feature-section.store');
+
+    // Feature Section Routes
+    Route::get('/offer-section', 'OfferController@index')->name('offer-section.index');
+    Route::post('/offer-section', 'OfferController@store')->name('offer-section.store');
+
+    // About Us Section
+    Route::get('/pages/about-us', 'AboutUsController@index')->name('about-us.index');
+    Route::post('/pages/about-us', 'AboutUsController@store')->name('about-us.store');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/shop', 'ShopController@index')->name('shop');
+Route::get('/blog', 'BlogController@index')->name('blog');
+Route::get('/about-us', 'AboutUsController@index')->name('about-us');
+Route::get('/contact-us', 'ContactUsController@index')->name('contact-us');

@@ -10,7 +10,8 @@ class CategoryComposer
     public function compose(View $view)
     {
         $view->with('categories', Category::paginate(10))
-                ->with('categoryList', Category::pluck('name', 'id')->toArray());
+                ->with('categoryList', Category::pluck('name', 'id')->toArray())
+                ->with('homeCategories', Category::limit(2)->get());
     }
 }
 
