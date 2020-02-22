@@ -36,7 +36,7 @@
                                     </div>
                                     <div class="product-extra-link style1">
                                         <a href="#" class="wishlist-link color title30"><i class="icon ion-android-favorite-outline"></i></a>
-                                        <a href="#" class="addcart-link shop-button color">View Details</a>
+                                        <a href="{{route('shop.show', $product->id)}}" class="addcart-link shop-button color">View Details</a>
                                         <a href="#" class="compare-link color title30"><i class="icon ion-ios-checkmark-outline"></i></a>
                                     </div>
                                     <div class="product-rate">

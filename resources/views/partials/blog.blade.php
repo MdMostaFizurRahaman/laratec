@@ -15,7 +15,7 @@
                             <h3 class="title18 font-bold"><a href="#">{{$post->title}} </a></h3>
                             <span class="color post-date"><i class="icon ion-calendar"></i>{{$post->createdAt->diffForHumans()}}</span>
                             <p class="desc">{{Str::limit($post->description, 150)}}</p>
-                            <a href="#" class="shop-button color">Read More</a>
+                            <a href="{{route('blog.show', $post->id)}}" class="shop-button color">Read More</a>
                         </div>
                     </div>
                 @endforeach

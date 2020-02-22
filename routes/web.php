@@ -70,6 +70,8 @@ Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/shop', 'ShopController@index')->name('shop');
+Route::get('/shop/{product}', 'ShopController@show')->name('shop.show');
 Route::get('/blog', 'BlogController@index')->name('blog');
+Route::get('/blog/{post}', 'BlogController@show')->name('blog.show');
 Route::get('/about-us', 'AboutUsController@index')->name('about-us');
 Route::get('/contact-us', 'ContactUsController@index')->name('contact-us');

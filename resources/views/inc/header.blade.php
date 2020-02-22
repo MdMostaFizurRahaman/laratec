@@ -17,64 +17,6 @@
                         <li>
                             <a href="#" class="sign-up smoke"><span class="white title18"><i class="icon ion-android-person"></i></span>Sign Up</a>
                         </li>
-                        <li>
-                            <div class="mini-cart-box mini-cart1 dropdown-box">
-                                <a class="mini-cart-link" href="cart.html">
-                                    <span class="mini-cart-icon title18 white"><i class="icon ion-android-cart"></i></span>
-                                    <sup class="mini-cart-number white title10">2</sup>
-                                    <span class="mini-cart-label smoke">Cart</span>
-                                </a>
-                                <div class="mini-cart-content dropdown-list text-left">
-                                    <h2 class="title18 font-bold rale-font">(2) ITEMS IN MY CART</h2>
-                                    <div class="list-mini-cart-item">
-                                        <div class="product-mini-cart table">
-                                            <div class="product-thumb">
-                                                <a href="detail.html" class="product-thumb-link"><img alt="" src="{{asset('theme')}}/images/product/fb-tech-watch-01.png"></a>
-                                            </div>
-                                            <div class="product-info">
-                                                <h3 class="product-title title16 font-bold"><a href="#">Ella angle2</a></h3>
-                                                <div class="product-price">
-                                                    <ins class="title14 font-bold"><span>$40.00</span></ins>
-                                                </div>
-                                                <div class="mini-cart-qty">
-                                                    <label>Qty:</label>
-                                                    <span>1</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-delete text-right">
-                                                <a href="#" class="remove-product"><i class="icon ion-trash-a"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-mini-cart table">
-                                            <div class="product-thumb">
-                                                <a href="detail.html" class="product-thumb-link"><img alt="" src="{{getSettings()->getFirstMediaUrl()}}"></a>
-                                            </div>
-                                            <div class="product-info">
-                                                <h3 class="product-title title16 font-bold"><a href="#">Ella angle2</a></h3>
-                                                <div class="product-price">
-                                                    <ins class="title14 font-bold"><span>$40.00</span></ins>
-                                                </div>
-                                                <div class="mini-cart-qty">
-                                                    <label>Qty:</label>
-                                                    <span>1</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-delete text-right">
-                                                <a href="#" class="remove-product"><i class="icon ion-trash-a"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mini-cart-total text-uppercase rale-font title18 clearfix">
-                                        <span class="pull-left">TOTAL</span>
-                                        <strong class="pull-right color">$80.00</strong>
-                                    </div>
-                                    <div class="mini-cart-button">
-                                        <a class="mini-cart-view shop-button color" href="#">View my cart </a>
-                                        <a class="mini-cart-checkout shop-button color" href="#">Checkout</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -86,7 +28,7 @@
             <div class="row">
                 <div class="col-md-3 col-sm-12 col-xs-9">
                     <div class="logo logo1">
-                        <h1 class="hidden">FB-Tech</h1>
+                        <h1 class="hidden">Bio-Access Tech</h1>
                         <a href="#"><img src="{{logo()}}" alt="" width="180px" height="60px"></a>
                     </div>
                 </div>

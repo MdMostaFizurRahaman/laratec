@@ -23,4 +23,11 @@ class Product extends Model implements HasMedia
         return $this->belongsTo(Category::class);
     }
 
+    public function getRelatedProductsAttribute()
+    {
+        return self::whereHas('category', function($query){
+                        $query->where('name', $this->category->name);
+                    })->whereNotIn('name', [$this->name])->get();
+    }
+
 }

@@ -11,7 +11,7 @@
         <div class="bread-crumbs">
             <a href="{{url('/')}}"><i class="icon ion-ios-home"></i></a>
             <a href="{{route('blog')}}">Blog</a>
-            <span>{{$post->id}}</span>
+            <span>{{Str::title(Str::slug($post->title, '-'))}}</span>
         </div>
         <!-- End Bread Crumb -->
         <div class="content-pages">

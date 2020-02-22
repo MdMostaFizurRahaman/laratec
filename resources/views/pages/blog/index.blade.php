@@ -37,7 +37,7 @@
                                         </li>
                                     </ul>
                                     <p class="desc">{{Str::limit($post->description, 150)}}</p>
-                                    <a href="#" class="shop-button color">Shop Now</a>
+                                    <a href="{{route('blog.show', $post->id)}}" class="shop-button color">Read More</a>
                                 </div>
                             </div>
                         </div>
