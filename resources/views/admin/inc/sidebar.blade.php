@@ -134,14 +134,29 @@
             {{-- Settings Section --}}
 
             {{-- Slider Section --}}
-            <li class="nav-item">
-              <a href="{{route('admin.carousels')}}" class="nav-link {{Request::is('admin/carousels') || Request::is('admin/carousels/*') ? 'active' : ''}}">
-                <i class="nav-icon fas fa-images"></i>
-                <p>
-                  Carousel
-                </p>
-              </a>
-            </li>
+            <li class="nav-item has-treeview {{Request::is('admin/sliders/*') ? 'menu-open' : ''}}">
+                <a href="#" class="nav-link {{Request::is('admin/sliders/*') ? 'active' : ''}}">
+                  <i class="nav-icon fas fa-image"></i>
+                  <p>
+                      Sliders
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                      <a href="{{route('admin.slider.home.index')}}" class="nav-link {{Request::is('admin/sliders/home') ? 'active' : ''}}">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Home Slider</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="{{route('admin.posts.index')}}" class="nav-link {{Request::is('admin/posts') || Request::is('admin/posts/*/edit') ? 'active' : ''}}">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Manage Posts</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
             {{-- End Carousel --}}
 
             {{-- Feature Section --}}

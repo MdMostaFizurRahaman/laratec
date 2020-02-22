@@ -50,10 +50,12 @@ Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function () {
 
     Route::resource('our-customers', 'OurCustomerController');
 
-    // Carousel Routes
-    Route::get('/carousels', 'CarouselController@carousels')->name('carousels');
-    Route::post('/carousel', 'CarouselController@store')->name('carousel.store');
-    Route::post('/carousel/update', 'CarouselController@update')->name('carousel.update');
+    // Slider Routes
+    Route::prefix('/sliders')->name('slider.')->group(function(){
+        Route::get('/home', 'HomeSliderController@index')->name('home.index');
+        Route::post('/home', 'HomeSliderController@store')->name('home.store');
+        Route::post('/home/{slider}', 'HomeSliderController@update')->name('home.update');
+    });
 
     // Feature Section Routes
     Route::get('/feature-section', 'FeatureSectionController@index')->name('feature-section.index');

@@ -75,6 +75,9 @@
                                         <label for="">Featured Image</label>
                                         <input class="form-control dropify" type="file" data-height="250" name="image" data-default-file="{{!empty($feature) ? $feature->getFirstMediaUrl('general') : null}}">
                                         <label class="text-danger">* Image height should be 1920x960 px. </label>
+                                        @if ($errors->has('image'))
+                                            <div class="error text-danger">{{ $errors->first('image') }}</div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

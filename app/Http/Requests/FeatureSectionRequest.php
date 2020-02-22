@@ -27,8 +27,9 @@ class FeatureSectionRequest extends FormRequest
             'title' => 'required|string|max:20',
             'sub_title' => 'required|string|max:45',
             'price' => 'required|numeric|min:1',
-            'shop_now_link' => 'nullable|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
-            'details_link' => 'nullable|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
+            'shop_now_link' => 'nullable|url',
+            'details_link' => 'nullable|url',
+            'image' => 'required'
         ];
     }
 

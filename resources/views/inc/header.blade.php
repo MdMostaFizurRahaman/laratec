@@ -29,7 +29,7 @@
                 <div class="col-md-3 col-sm-12 col-xs-9">
                     <div class="logo logo1">
                         <h1 class="hidden">Bio-Access Tech</h1>
-                        <a href="#"><img src="{{logo()}}" alt="" width="180px" height="60px"></a>
+                        <a href="{{url('/')}}"><img src="{{logo()}}" alt="" width="180px" height="60px"></a>
                     </div>
                 </div>
                 <div class="col-md-9 col-sm-12 col-xs-3">
